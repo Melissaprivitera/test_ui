@@ -16,7 +16,7 @@ import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 import { TorusWalletAdapter } from "@web3auth/torus-evm-adapter";
 import { Flex, useColorModeValue, Spacer, Heading, Button, Container, Box, Text } from '@chakra-ui/react'
 import loader from "./reggae-loader.svg";
-import {nftAddress, nftAbi} from "./config";
+import {basicAddress, basicAbi} from "./config";
 
 const clientId = process.env.NEXT_PUBLIC_WEB3AUTH_KEY || '';
 const artheraRpcEndpoint = process.env.NEXT_PUBLIC_ARTHERA_RPC_ENPOINT_URL || '';
@@ -361,7 +361,7 @@ function App() {
     }
     const rpc = new RPC(provider);
     uiConsole("Minting...");
-    const mint = await rpc.mint(nftAddress, nftAbi);
+    const mint = await rpc.mint(basicAddress, basicAbi);
     console.log("mint:", mint)
     uiConsole('mint tx hash: '+ mint.hash);
     getBalance()

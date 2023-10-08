@@ -93,9 +93,8 @@ export default class EthereumRpc {
     try {
       const ethersProvider = new ethers.BrowserProvider(this.provider);
       const signer = await ethersProvider.getSigner();
-      const nft = new ethers.Contract( addr, abi, signer)
-      const uri = "ipfs://bafkreihuxvtiq4yvyeq6tusba75nbkjbnhtx7qufc3ierb4gltyqy5cw3m"
-      const mint = await nft.safeMint(signer.address, uri)
+      const basic = new ethers.Contract( addr, abi, signer)
+      const mint = await basic.mint(100000000)
       const receipt = await mint.wait(1)
       return receipt;
     } catch (error) {
