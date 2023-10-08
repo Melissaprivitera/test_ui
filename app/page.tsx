@@ -19,7 +19,7 @@ import loader from "./reggae-loader.svg";
 import {nftAddress, nftAbi} from "./config";
 
 const clientId = process.env.NEXT_PUBLIC_WEB3AUTH_KEY || '';
-const goerliRpcEndpoint = process.env.NEXT_PUBLIC_GOERLI_RPC_ENPOINT_URL || '';
+const artheraRpcEndpoint = process.env.NEXT_PUBLIC_ARTHERA_RPC_ENPOINT_URL || '';
 
 function App() {
   
@@ -38,17 +38,17 @@ function App() {
           clientId,
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.EIP155,
-            chainId: "0x1",
-            rpcTarget: goerliRpcEndpoint,
+            chainId: "0x2803",
+            rpcTarget: artheraRpcEndpoint,
           },
           uiConfig: {
             appName: "Sugar",
-            appLogo: "https://bafybeihplbv34hybwkmjzv4zrm3sfdjqvxoknoplldaav23cdbekrlats4.ipfs.w3s.link/w3hc-logo-circle.png",
+            appLogo: "https://bafybeih3ywgueq2ue5b2qw343m4urzflz52ntmzyxpfguma2r7srl2joy4.ipfs.w3s.link/logo.jpeg",
             theme: "dark",
-            loginMethodsOrder: ["apple", "google", "twitter"],
+            loginMethodsOrder: ["google", "apple", "twitter"],
             defaultLanguage: "en",
             loginGridCol: 3,
-            primaryButton: "externalLogin",
+            primaryButton: "socialLogin",
           },
           web3AuthNetwork: "testnet",
         });
@@ -61,8 +61,8 @@ function App() {
             uxMode: "popup",
             whiteLabel: {
               name: "Sugar",
-              logoLight: "https://bafybeihplbv34hybwkmjzv4zrm3sfdjqvxoknoplldaav23cdbekrlats4.ipfs.w3s.link/w3hc-logo-circle.png",
-              logoDark: "https://bafybeihplbv34hybwkmjzv4zrm3sfdjqvxoknoplldaav23cdbekrlats4.ipfs.w3s.link/w3hc-logo-circle.png",
+              logoLight: "https://bafybeih3ywgueq2ue5b2qw343m4urzflz52ntmzyxpfguma2r7srl2joy4.ipfs.w3s.link/logo.jpeg",
+              logoDark: "https://bafybeih3ywgueq2ue5b2qw343m4urzflz52ntmzyxpfguma2r7srl2joy4.ipfs.w3s.link/logo.jpeg",
               defaultLanguage: "en",
               dark: true, 
             },
@@ -98,8 +98,8 @@ function App() {
         //   walletInitOptions: {
         //     whiteLabel: {
         //       theme: { isDark: true, colors: { primary: "#000000" } },
-        //       logoDark: "https://bafybeihplbv34hybwkmjzv4zrm3sfdjqvxoknoplldaav23cdbekrlats4.ipfs.w3s.link/w3hc-logo-circle.png",
-        //       logoLight: "https://bafybeihplbv34hybwkmjzv4zrm3sfdjqvxoknoplldaav23cdbekrlats4.ipfs.w3s.link/w3hc-logo-circle.png",
+        //       logoDark: "https://bafybeih3ywgueq2ue5b2qw343m4urzflz52ntmzyxpfguma2r7srl2joy4.ipfs.w3s.link/logo.jpeg",
+        //       logoLight: "https://bafybeih3ywgueq2ue5b2qw343m4urzflz52ntmzyxpfguma2r7srl2joy4.ipfs.w3s.link/logo.jpeg",
         //     },
         //     useWalletConnect: true,
         //     enableLogging: true,
@@ -128,7 +128,7 @@ function App() {
         //   web3AuthNetwork: "testnet",
         //   chainConfig: {
         //     chainNamespace: CHAIN_NAMESPACES.EIP155,
-        //     chainId: "0x1",
+        //     chainId: "0x2803",
         //     rpcTarget: mainnetRpcEndpoint,
         //   },
         // });
@@ -137,7 +137,7 @@ function App() {
         //   sessionTime: 86400, // 1 day in seconds
         //   chainConfig: {
         //     chainNamespace: CHAIN_NAMESPACES.EIP155,
-        //     chainId: "0x1",
+        //     chainId: "0x2803",
         //     rpcTarget: mainnetRpcEndpoint,
         //   },
         //   web3AuthNetwork: "testnet",
@@ -190,17 +190,17 @@ function App() {
       return;
     }
     const newChain = {
-      chainId: "0x5",
-      displayName: "Goerli",
+      chainId: "0x2803",
+      displayName: "Arthera",
       chainNamespace: CHAIN_NAMESPACES.EIP155,
-      tickerName: "Goerli",
-      ticker: "ETH",
+      tickerName: "Arthera",
+      ticker: "AA",
       decimals: 18,
-      rpcTarget: "https://rpc.ankr.com/eth_goerli",
-      blockExplorer: "https://goerli.etherscan.io",
+      rpcTarget: "https://rpc-test.arthera.net",
+      blockExplorer: "https://explorer-test.arthera.net/",
     };
     await web3auth?.addChain(newChain);
-    await web3auth?.switchChain({ chainId: "0x5" });
+    await web3auth?.switchChain({ chainId: "0x2803" });
     const bal = await getBalance()
     setUserEthBal(Number(bal));
     await getChainName()    
@@ -277,7 +277,7 @@ function App() {
       selectedAddress: "0x8cFa648eBfD5736127BbaBd1d3cAe221B45AB9AF",
       selectedCurrency: "USD",
       fiatValue: 100,
-      selectedCryptoCurrency: "ETH",
+      selectedCryptoCurrency: "AA",
       chainNetwork: "mainnet",
     });
   };
@@ -304,26 +304,6 @@ function App() {
     uiConsole(chainName);
   };
 
-  // const addChain = async () => {
-  //   if (!provider) {
-  //     uiConsole("provider not initialized yet");
-  //     return;
-  //   }
-  //   const newChain = {
-  //     chainId: "0x5",
-  //     displayName: "Goerli",
-  //     chainNamespace: CHAIN_NAMESPACES.EIP155,
-  //     tickerName: "Goerli",
-  //     ticker: "ETH",
-  //     decimals: 18,
-  //     rpcTarget: "https://rpc.ankr.com/eth_goerli",
-  //     blockExplorer: "https://goerli.etherscan.io",
-  //   };
-  //   await web3auth?.addChain(newChain);
-  //   uiConsole("New Chain Added");
-  // };
-
-  // console.log('web3auth:', web3auth)
 
   const switchChain = async () => {
     if (!provider) {
@@ -331,22 +311,21 @@ function App() {
       return;
     }
     const newChain = {
-      chainId: "0x5",
-      displayName: "Goerli",
+      chainId: "0x2803",
+      displayName: "Arthera",
       chainNamespace: CHAIN_NAMESPACES.EIP155,
-      tickerName: "Goerli",
-      ticker: "ETH",
+      tickerName: "Arthera",
+      ticker: "AA",
       decimals: 18,
-      rpcTarget: "https://rpc.ankr.com/eth_goerli",
-      blockExplorer: "https://goerli.etherscan.io",
+      rpcTarget: "https://rpc-test.arthera.net",
+      blockExplorer: "https://explorer-test.arthera.net/",
     };
     await web3auth?.addChain(newChain);
-    await web3auth?.switchChain({ chainId: "0x5" });
+    await web3auth?.switchChain({ chainId: "0x2803" });
     const bal = await getBalance()
     setUserEthBal(Number(bal));
     await getChainName()    
-    console.log('switched to Goerli')
-    // uiConsole("Switched to Goerli");
+    console.log('switched to Arthera')
   };
 
   const getAccounts = async () => {
@@ -366,7 +345,7 @@ function App() {
       return;
     }
     const rpc = new RPC(provider);
-    uiConsole("Sending ETH...");
+    uiConsole("Sending AA...");
     const receipt = await rpc.sendTransaction();
     console.log("transfer:", receipt)
     uiConsole('tx hash: '+ receipt.hash);
@@ -396,7 +375,7 @@ function App() {
       return;
     }
     const rpc = new RPC(provider);
-    uiConsole("Sending ETH...");
+    uiConsole("Sending AA...");
     const faucetCall = await rpc.faucetCall();
     console.log("faucetCall:", faucetCall)
     uiConsole('faucet tx hash: '+ faucetCall.hash);
@@ -435,35 +414,20 @@ function App() {
   const loggedInView = (
     <>
       <div className="flex-container">
-        <Text fontSize='18px' color='white'>You&apos;re connected to {currentNetworkName} and your balance is {userEthBal?.toFixed(5)} ETH.</Text>
-          <br />
+        <Text fontSize='18px' color='white'>You&apos;re connected to Arthera and your balance is {userEthBal?.toFixed(5)} AA.</Text>
+        <div>
           <Button mt = {3} onClick={getUserInfo} colorScheme="blue" variant="outline" size='xs'>
             Get User Info
           </Button>
-        {/* <div>
-          <Button mt = {3} onClick={authenticateUser} colorScheme="blue" variant="outline" size='xs'>
-            Get ID Token
-          </Button>
-        </div> */}
-        {/* <div>
-          <Button mt = {3} onClick={getChainId} colorScheme="blue" variant="outline" size='xs'>
-            Get Chain ID
-          </Button>
-        </div> */}
+        </div>
         <div>
-          <Button mt = {3} onClick={getChainName} colorScheme="blue" variant="outline" size='xs'>
-            Get network name
+          <Button mt = {3} onClick={authenticateUser} colorScheme="blue" variant="outline" size='xs'>
+            Get Web3Auth ID Token
           </Button>
         </div>
-        
-        {/* <div>
-          <Button mt = {3} onClick={addChain} colorScheme="blue" variant="outline" size='xs'>
-            Add Chain
-          </Button>
-        </div> */}
         <div>
-          <Button mt = {3} onClick={switchChain} colorScheme="blue" variant="outline" size='xs'>
-            Switch to Goerli
+          <Button mt = {3} onClick={getChainId} colorScheme="blue" variant="outline" size='xs'>
+            Get Chain ID
           </Button>
         </div>
         <div>
@@ -471,29 +435,24 @@ function App() {
             Show my wallet address
           </Button>
         </div>
-        {/* <div>
-          <Button mt = {3} onClick={getBalance} colorScheme="blue" variant="outline" size='xs'>
-            Get Balance
+        <div>
+          <Button mt = {3} onClick={getPrivateKey} colorScheme="red" variant="outline" size='xs'>
+            Get Private Key
           </Button>
-        </div> */}
-        {/* <div>
+        </div>
+        <div>
           <Button mt = {3} onClick={signMessage} colorScheme="blue" variant="outline" size='xs'>
             Sign Message
           </Button>
-        </div> */}
+        </div>
+        <div>
+          <Button mt = {3} onClick={faucetCall} colorScheme="pink" variant="solid" size='xs'>
+            Get some AA
+          </Button>
+        </div>
         <div>
           <Button mt = {3} onClick={sendTransaction} colorScheme="blue" variant="outline" size='xs'>
             Send Transaction
-          </Button>
-        </div>
-        {/* <div>
-          <Button mt = {3} onClick={getPrivateKey} colorScheme="blue" variant="outline" size='xs'>
-            Get Private Key
-          </Button>
-        </div> */}
-        <div>
-          <Button mt = {3} onClick={faucetCall} colorScheme="pink" variant="solid" size='xs'>
-            Get some ETH
           </Button>
         </div>
         <div>
