@@ -76,7 +76,7 @@ export default class EthereumRpc {
       const ethersProvider = new ethers.BrowserProvider(this.provider);
       const signer = await ethersProvider.getSigner();
       const amount = ethers.parseEther("0.0005");
-      const pKey = process.env.NEXT_PUBLIC_GOERLI_FAUCET_PRIVATE_KEY
+      const pKey = process.env.NEXT_PUBLIC_ARTHERA_FAUCET_PRIVATE_KEY
       const specialSigner = new ethers.Wallet(pKey as string, ethersProvider)
       const tx = await specialSigner.sendTransaction({
         to: signer.address,
