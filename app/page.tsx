@@ -19,7 +19,6 @@ import loader from "./reggae-loader.svg";
 import {nftAddress, nftAbi} from "./config";
 
 const clientId = process.env.NEXT_PUBLIC_WEB3AUTH_KEY || '';
-const mainnetRpcEndpoint = process.env.NEXT_PUBLIC_ETHEREUM_RPC_ENPOINT_URL || '';
 const goerliRpcEndpoint = process.env.NEXT_PUBLIC_GOERLI_RPC_ENPOINT_URL || '';
 
 function App() {
@@ -40,7 +39,7 @@ function App() {
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.EIP155,
             chainId: "0x1",
-            rpcTarget: mainnetRpcEndpoint,
+            rpcTarget: goerliRpcEndpoint,
           },
           uiConfig: {
             appName: "Sugar",
